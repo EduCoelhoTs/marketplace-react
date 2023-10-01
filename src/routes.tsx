@@ -24,6 +24,8 @@ export default function Router() {
             */}
             <Route path="/" element={<MainLayout />}>
                 <Route index element={<Home />} />
+                <Route path="cadastro" />
+                <Route path="lista" />
             </Route>
             {/* Colodando uma rota padrão, de não encontrada */}
             <Route path="*" element={<NotFount />} />
