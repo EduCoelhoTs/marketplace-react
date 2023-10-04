@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MainLayout from "./layouts/MainLayout";
 import NotFount from "./pages/NotFound";
+import RegisterStore from "./pages/RegisterStore";
 
 export default function Router() {
     return (
@@ -24,7 +25,7 @@ export default function Router() {
             */}
             <Route path="/" element={<MainLayout />}>
                 <Route index element={<Home />} />
-                <Route path="cadastro" />
+                <Route path="cadastro" element={<RegisterStore />} />
                 <Route path="lista" />
             </Route>
             {/* Colodando uma rota padrão, de não encontrada */}
