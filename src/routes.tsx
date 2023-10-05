@@ -2,7 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MainLayout from "./layouts/MainLayout";
 import NotFount from "./pages/NotFound";
-import RegisterStore from "./pages/RegisterStore";
+import { Suspense, lazy } from "react";
+
+const RegisterStore = lazy(() => import("./pages/RegisterStore")); 
 
 export default function Router() {
     return (
@@ -25,8 +27,8 @@ export default function Router() {
             */}
             <Route path="/" element={<MainLayout />}>
                 <Route index element={<Home />} />
-                <Route path="cadastro" element={<RegisterStore />} />
-                <Route path="lista" />
+                    <Route path="cadastro" element={ <Suspense fallback={<div>Carregando...</div>}><RegisterStore /> </Suspense>} />
+                    <Route path="lista" />
             </Route>
             {/* Colodando uma rota padrão, de não encontrada */}
             <Route path="*" element={<NotFount />} />
