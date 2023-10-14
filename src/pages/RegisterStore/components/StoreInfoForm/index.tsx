@@ -24,13 +24,13 @@ export default function StoreInfoForm() {
                     }} 
                     defaultValue={form?.name}
                     {...register('name', {required: true})}
-                    id="nameInput"
+                    id="name"
                     type="text" />
+                    <p style={{color: 'red'}}></p>
                 </div>
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    
                 }}>
                     <label >Categoria</label>
                     <input style={{
@@ -40,7 +40,7 @@ export default function StoreInfoForm() {
                     }} 
                     defaultValue={form?.category}
                     {...register('category', {required: true})} 
-                    id="nameInput"
+                    id="category"
                     type="text" />
                 </div>
             </section>
