@@ -1,19 +1,16 @@
-import { useForm } from "react-hook-form";
+import { useFormState } from "../../../../hooks/useFormState";
+import { addNewForm } from "../../redux/formSlice";
 
 export default function StoreAdressForm() {
 
-    const { register, handleSubmit, setValue } = useForm();
-
-    const registerAdress = (form: unknown) => {
-        console.log(form)
-    }
+    const { handleSubmitForm, form, register } = useFormState({action: addNewForm, formName: 'storeAdress'})
 
     return (
         <main>
              <section>
                 <h4 >Cadastrar Endereço</h4>
             </section>
-            <form onSubmit={handleSubmit(registerAdress)}>
+            <form onBlur={handleSubmitForm}>
                 <section>
                 <div style={{
                     display: 'flex',
@@ -26,6 +23,7 @@ export default function StoreAdressForm() {
                         border: '1px solid #d8d8d8',
                         borderRadius: '8px'
                     }} 
+                    defaultValue={form?.street}
                     {...register('street')} 
                     id="nameInput" 
                     type="text" />
@@ -41,6 +39,7 @@ export default function StoreAdressForm() {
                         border: '1px solid #d8d8d8',
                         borderRadius: '8px'
                     }} 
+                    defaultValue={form?.neighborhood}
                     {...register('neighborhood')} 
                     id="nameInput" 
                     type="text" />
@@ -56,6 +55,7 @@ export default function StoreAdressForm() {
                         border: '1px solid #d8d8d8',
                         borderRadius: '8px'
                     }} 
+                    defaultValue={form?.houseNumber}
                     {...register('houseNumber')} 
                     id="nameInput" 
                     type="text" />
@@ -71,6 +71,7 @@ export default function StoreAdressForm() {
                         border: '1px solid #d8d8d8',
                         borderRadius: '8px'
                     }} 
+                    defaultValue={form?.city}
                     {...register('city')}
                     id="nameInput"
                     type="text" />
@@ -86,13 +87,13 @@ export default function StoreAdressForm() {
                         border: '1px solid #d8d8d8',
                         borderRadius: '8px'
                     }} 
+                    defaultValue={form?.postalCode}
                     {...register('postalCode')} 
                     id="name
                     Input" 
                     type="text" />
                 </div>
                 </section>
-                <button type="submit">Avançar</button>
             </form>
         </main>
     )

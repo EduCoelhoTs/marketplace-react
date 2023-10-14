@@ -1,23 +1,20 @@
-import { useForm } from "react-hook-form";
+import { addNewForm } from "../../redux/formSlice";
+import { useFormState } from "../../../../hooks/useFormState";
 
 export default function StoreInfoForm() {
-    const { register, handleSubmit, setValue } = useForm();
-
-    const registerStore = (form: unknown) => {
-        console.log(form)
-    }
+   
+    const { handleSubmitForm, form, register } = useFormState({action: addNewForm, formName: 'storeInfo'})
 
     return (
         <main>
         <section>
             <h4 >Cadastrar Loja</h4>
         </section>
-        <form onSubmit={handleSubmit(registerStore)}>
+        <form onBlur={handleSubmitForm}>
             <section>
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    
                 }}>
                     <label className="" >Nome</label>
                     <input style={{
@@ -25,7 +22,8 @@ export default function StoreInfoForm() {
                         border: '1px solid #d8d8d8',
                         borderRadius: '8px'
                     }} 
-                    {...register('name')}
+                    defaultValue={form?.name}
+                    {...register('name', {required: true})}
                     id="nameInput"
                     type="text" />
                 </div>
@@ -40,12 +38,13 @@ export default function StoreInfoForm() {
                         border: '1px solid #d8d8d8',
                         borderRadius: '8px'
                     }} 
-                    {...register('category')} 
+                    defaultValue={form?.category}
+                    {...register('category', {required: true})} 
                     id="nameInput"
                     type="text" />
                 </div>
             </section>
-            <button type="submit">Avançar</button>
+            {/* <button type="submit">Avançar</button> */}
         </form>
     </main>
     )
